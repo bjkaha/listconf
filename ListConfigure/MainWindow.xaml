@@ -30,20 +30,20 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" x:Name="DirSelector" Margin="10">
 
-                <Button Click="ImportClick" VerticalAlignment="Center">
+                <Button Click="ImportClick" VerticalAlignment="Center" Margin="0 0 5 0" Width="140">
                     <Button.DataContext>
                         <model:Configuration x:Name="MyConfig"/>
                     </Button.DataContext>
                     Set Source Directory
                 </Button>
-                <TextBlock x:Name="Dir" Text="{Binding ElementName=MyConfig, Path=SelectedDirectory}" VerticalAlignment="Center" Background="#fff" Foreground="#5d5d5d" Padding="5"
+                <TextBlock x:Name="Dir" Text="{Binding ElementName=MyConfig, Path=SelectedDirectory}" VerticalAlignment="Center" Background="#fff" Foreground="#5d5d5d" Padding="4" 
                        Visibility="{Binding ElementName=MyConfig, Path=SelectedDirectory, Converter={StaticResource NullToVisibility}}"/>
-                <Button VerticalAlignment="Center" Margin="0" Click="RefreshClick"
+                <Button VerticalAlignment="Center" Margin="15 4 0 0" Click="RefreshClick" Style="{StaticResource LinkButton}"
                     Visibility="{Binding ElementName=MyConfig, Path=SelectedDirectory, Converter={StaticResource NullToVisibility}}">
                     Refresh
                 </Button>
             </StackPanel>
-            <ListView x:Name="FileListView" ItemsSource="{Binding ElementName=MyConfig, Path=ListFiles}" Grid.Column="0" Grid.Row="1" Margin="5 5 0 0" BorderThickness="1" BorderBrush="#6d6d6d">
+            <ListView x:Name="FileListView" ItemsSource="{Binding ElementName=MyConfig, Path=ListFiles}" Grid.Column="0" Grid.Row="1" Margin="5 3 0 0" BorderThickness="1" BorderBrush="#6d6d6d">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Gray" BorderThickness="0 0 0 1" Padding="6">
@@ -56,9 +56,9 @@
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Row="0" Grid.Column="0"  Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay}"></CheckBox>
+                                <CheckBox IsChecked="{Binding IsIncluded, Mode=TwoWay}" Margin="0 0 5 0"></CheckBox>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Name}" FontSize="17" FontWeight="Medium" Foreground="#5d5d5d"/>
+                                    <TextBlock Text="{Binding Name}" FontSize="17" FontWeight="Medium"/>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Category: " FontSize="13" Foreground="Gray"/>
                                         <TextBlock Text="{Binding Category}" FontSize="13" FontWeight="Medium" Foreground="#5d5d5d"/>
@@ -90,19 +90,20 @@
             </ScrollViewer>
         </Border>
         <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" Width="5" HorizontalAlignment="Stretch" Background="#f0f0f0"></GridSplitter>
-        
-        <StackPanel x:Name="RightDock" Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" Margin="10">
+
+        <Border Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" Background="#eaeaea">
+        <StackPanel x:Name="RightDock" Margin="10">
             <StackPanel>
                 <StackPanel.DataContext>
                     <model:User x:Name="MyUser"/>
                 </StackPanel.DataContext>
-                <TextBlock Text="{Binding Path=Name}" FontWeight="Medium"/>
-                <TextBlock Text="{Binding Path=Email}"/>
-                <TextBlock Text="{Binding Path=Server}"/>
-                <Button x:Name="ReloginButton" Click="Relogin_Click">Re-login</Button>
-                <Button x:Name="SignOutButton" Click="SignOutButton_Click">Sign Out</Button>
-                
-            </StackPanel>
+                    <TextBlock Text="{Binding Path=Name}" FontWeight="Medium"/>
+                    <TextBlock Text="{Binding Path=Email}"/>
+                    <TextBlock Text="{Binding Path=Server}"/>
+                    <Button x:Name="SignOutButton" Click="SignOutButton_Click" Margin="0 8 0 0">Sign out</Button>
+                    <Button x:Name="ReloginButton" Click="Relogin_Click" Margin="0 8 0 0">Re-login</Button>
+
+                </StackPanel>
             <Label FontSize="12" Margin="0 15 0 0">Configuration Options</Label>
             <RadioButton IsChecked="True" Margin="2" x:Name="IsCsv">Csv file</RadioButton>
             <RadioButton Margin="2">Tab separated text file</RadioButton>
@@ -110,8 +111,9 @@
             <Separator Margin=" 0 10 0 10"/>
             <CheckBox IsChecked="True" Margin="2" x:Name="EnableNewCategory">Enable new category creation</CheckBox>
             <CheckBox IsChecked="True" Margin="2" x:Name="EnableReplacing">Enable replacing existing values</CheckBox>
-            <Button Width="150" Padding="20" Style="{StaticResource MainButton}" IsEnabled="{Binding ElementName=MyConfig, Path=ListFiles, Converter={StaticResource NullToBool}}" Click="Run">Run Configuration!</Button>
+            <Button Width="180" Padding="20" Style="{StaticResource MainButton}" IsEnabled="{Binding ElementName=MyConfig, Path=ListFiles, Converter={StaticResource NullToBool}}" Click="Run" Margin="0 20 0 0">Run Configuration!</Button>
             <Controls:ProgressRing x:Name="MyRing" Foreground="{DynamicResource AccentColorBrush}" IsActive="False" Margin="0 10 0 0"/>
         </StackPanel>
+        </Border>
     </Grid>
 </Window>

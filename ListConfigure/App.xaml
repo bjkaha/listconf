@@ -14,13 +14,56 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontFamily" Value="Open Sans"/>
+                <Setter Property="Background" Value="#dedede"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="7" Background="{TemplateBinding Background}" BorderBrush="#888" BorderThickness="0.7" Padding="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#cecece"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="LinkButton" TargetType="{x:Type Button}">
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontFamily" Value="Open Sans"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="#0E98E7"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="#FFF" BorderThickness="0">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="#0080D0"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>   
+                </Style.Triggers>
+            </Style>
             <Style x:Key="MainButton" TargetType="{x:Type Button}">
                 <Setter Property="FontWeight" Value="Medium"/>
                 <Setter Property="Foreground" Value="#FFFFFF"/>
                 <Setter Property="Background" Value="#33d09a"/>
                 <Setter Property="Margin" Value="0 15 0 10"/>
                 <Setter Property="Height" Value="40"/>
-                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontSize" Value="14"/>
                 <Setter Property="FontFamily" Value="Open Sans"/>
                 <Setter Property="Template">
                     <Setter.Value>
