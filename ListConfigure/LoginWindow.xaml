@@ -1,0 +1,44 @@
+﻿<Window x:Class="ListConfigure.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:model="clr-namespace:ListConfigure.model"
+        xmlns:converter="clr-namespace:ListConfigure.converter"
+        xmlns:local="clr-namespace:ListConfigure"
+        mc:Ignorable="d"
+        Title="List Configuration Tool" Height="600" Width="400">
+    <Window.Resources>
+        <converter:NullToVisibilityConverter x:Key="NullToVisibility"/>
+        <converter:BoolToInverseVisibilityConverter x:Key="BoolToInverseVisibility"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.DataContext>
+            <model:Login x:Name="MyLogin"/>
+        </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="./toolbox.png" Width="90"/>
+            <Label HorizontalAlignment="Center" FontSize="25" FontWeight="Light" Foreground="#5d5d5d">List Configuration Tool</Label>
+            <StackPanel Width="260">
+                <Label>SERVER</Label>
+                <ComboBox Padding="8" FontSize="12" x:Name="Server">
+                    <ComboBoxItem IsSelected="True" Padding="8" x:Name="IsDev">https://dev.mxdeposit.net</ComboBoxItem>
+                    <ComboBoxItem Padding="8">https://app.mxdeposit.net</ComboBoxItem>
+                </ComboBox>
+                <Label>EMAIL</Label>
+                <TextBox x:Name="Email"></TextBox>
+                <Label>PASSWORD</Label>
+                <PasswordBox x:Name="Password"></PasswordBox>
+                <TextBlock x:Name="LoginError" TextWrapping="Wrap" Foreground="#ff0033" Text="{Binding Path=Error}"/>
+                <Button Style="{StaticResource MainButton}" Width="120" x:Name="SignInButton" IsDefault="True" Click="SignInButton_Click">SIGN IN</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
